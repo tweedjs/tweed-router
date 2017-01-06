@@ -19,8 +19,9 @@ describe('Router', () => {
   })
 
   test('can build links', () => {
-    expect(router.link('/', 'Link'))
-      .toEqual(<a href='/'>Link</a>)
+    const link = router.link('/', 'Link')
+    delete link.data.on
+    expect(link).toEqual(<a href='/'>Link</a>)
   })
 
   test('loads a route', async () => {
