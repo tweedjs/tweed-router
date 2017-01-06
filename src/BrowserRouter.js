@@ -67,10 +67,14 @@ export default class BrowserRouter {
   }
 
   link (href, title, attributes = {}) {
+    const event = href in this._router.routes
+      ? { 'on-click': this._onClickLink }
+      : {}
+
     return (
       <a
         href={href}
-        on-click={this._onClickLink}
+        {...event}
         {...attributes}
       >{title}</a>
     )
