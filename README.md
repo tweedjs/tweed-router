@@ -23,8 +23,8 @@ Render the router with Tweed's `render` method to render the current page of the
 automatically:
 
 ```javascript
-import { Engine, Node } from 'tweed'
-import DOMRenderer from 'tweed/render/dom'
+import { Node } from 'tweed'
+import render from 'tweed/render/dom'
 
 class HomePage {
   constructor (router) {
@@ -40,17 +40,13 @@ class HomePage {
   }
 }
 
-const engine = new Engine(
-  new DOMRenderer(document.querySelector('#app'))
-)
-
 const router = new Router({
   '/': () => new HomePage(router),
   '/about': () => <p>About page</p>
 })
 
 router.navigate('/')
-  .then(() => engine.render(router))
+  .then(() => render(router, document.querySelector('#app')))
 ```
 
 To hook up the router to the browser's History API, use the `BrowserRouter` like this:
@@ -64,7 +60,7 @@ const routes = {
 }
 
 BrowserRouter.make(routes)
-  .then((router) => engine.render(router))
+  .then((router) => render(router, document.querySelector('#app')))
 ```
 
 The router can also be used on the server using the `ServerRouter` like so:

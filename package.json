@@ -1,6 +1,6 @@
 {
   "name": "tweed-router",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Universal Router for Tweed",
   "homepage": "https://github.com/tweedjs/tweed-router",
   "license": "WTFPL",
@@ -19,7 +19,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "tweed": "^0.2.1"
+    "tweed": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

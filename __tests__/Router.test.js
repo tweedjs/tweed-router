@@ -1,7 +1,7 @@
 /** @jsx Node */
 
 import { Engine, Node } from 'tweed'
-import StringRenderer from 'tweed/render/string'
+import { StringRenderer } from 'tweed/render/string'
 import { Router, PageNotFoundError } from '../src'
 
 let html = ''

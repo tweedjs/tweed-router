@@ -770,8 +770,8 @@ babel-types@^6.15.0, babel-types@^6.16.0, babel-types@^6.18.0, babel-types@^6.19
     to-fast-properties "^1.0.1"
 
 babylon@^6.11.0, babylon@^6.13.0:
-  version "6.14.1"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.14.1.tgz#956275fab72753ad9b3435d7afe58f8bf0a29815"
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.15.0.tgz#ba65cfa1a80e1759b0e89fb562e27dccae70348e"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -2533,8 +2533,8 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
 node-emoji@^1.4.1:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.4.3.tgz#5272f70b823c4df6d7c39f84fd8203f35b3e5d36"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.5.0.tgz#9a0d9fe03fd43afa357d6d8e439aa31e599959b7"
   dependencies:
     string.prototype.codepointat "^0.2.0"
 
@@ -3114,8 +3114,8 @@ sha.js@2.2.6:
   resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.2.6.tgz#17ddeddc5f722fb66501658895461977867315ba"
 
 shelljs@^0.7.5:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.5.tgz#2eef7a50a21e1ccf37da00df767ec69e30ad0675"
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.6.tgz#379cccfb56b91c8601e4793356eb5382924de9ad"
   dependencies:
     glob "^7.0.0"
     interpret "^1.0.0"
@@ -3164,8 +3164,8 @@ sntp@1.x.x:
     hoek "2.x.x"
 
 source-list-map@~0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-0.1.7.tgz#d4b5ce2a46535c72c7e8527c71a77d250618172e"
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-0.1.8.tgz#c550b2ab5427f6b3f21f5afead88c4f5587b2106"
 
 source-map-support@^0.4.2:
   version "0.4.8"
@@ -3437,9 +3437,9 @@ tweed-babel-config@^0.2.0:
     babel-preset-es2016 "^6.16.0"
     babel-preset-es2017 "^6.16.0"
 
-tweed@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/tweed/-/tweed-0.2.1.tgz#e0b5869255b471bdfcfab9df7fcfe7f46df7485f"
+tweed@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/tweed/-/tweed-0.3.0.tgz#e6a7e7bd5ede282bb00984e0ac158a215d2b9f64"
   dependencies:
     snabbdom "^0.5.4"
     snabbdom-jsx "^0.3.1"
