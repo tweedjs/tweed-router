@@ -1,4 +1,5 @@
 import { Router, Routes } from './dist'
+import { Logger } from 'tweed/render/http'
 
 export interface IncomingMessage {
   url?: string
@@ -10,7 +11,11 @@ export interface ServerResponse {
 }
 
 interface ServerRouter extends Router {
-  handle (request: IncomingMessage, response: ServerResponse): PromiseLike<undefined>
+  handle (
+    request: IncomingMessage,
+    response: ServerResponse,
+    logger?: Logger
+  ): PromiseLike<undefined>
 }
 
 declare namespace ServerRouter {

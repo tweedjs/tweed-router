@@ -1,5 +1,4 @@
-import { Engine } from 'tweed'
-import HTTPRenderer from 'tweed/render/http'
+import render from 'tweed/render/http'
 import Router from './Router'
 
 export default class ServerRouter {
@@ -13,14 +12,10 @@ export default class ServerRouter {
     )
   }
 
-  async handle (request, response) {
-    const engine = new Engine(
-      new HTTPRenderer(response)
-    )
-
+  async handle (request, response, logger = null) {
     await this.navigate(request.url)
 
-    engine.render(this)
+    render(this, response, logger)
   }
 
   get current () {
