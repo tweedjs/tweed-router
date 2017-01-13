@@ -24,21 +24,26 @@ export default class Router {
 
     const result = await this.routes[route](this)
 
-    if (typeof result === 'object' && result.render == null) {
-      if (typeof result.default === 'function') {
-        return new result(this) // eslint-disable-line
+    this.current = await this._normalizeRouteResponse(result)
+
+    return this.current
+  }
+
+  async _normalizeRouteResponse (response) {
+    if (typeof response === 'object' && response.render == null) {
+      if (typeof response.default === 'function') {
+        return new response(this) // eslint-disable-line
       }
 
-      if (typeof result.load === 'function') {
-        return result.load(this)
+      if (typeof response.load === 'function') {
+        return response.load(this)
       }
 
-      if (typeof result.default === 'object' && result.default.render != null) {
-        return result.default
+      if (typeof response.default === 'object' && response.default.render != null) {
+        return response.default
       }
     }
-
-    return result
+    return response
   }
 
   render () {
