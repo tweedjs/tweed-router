@@ -22,9 +22,23 @@ export default class Router {
       throw new PageNotFoundError(path)
     }
 
-    this.current = await this.routes[route](this)
+    const result = await this.routes[route](this)
 
-    return this.current
+    if (typeof result === 'object' && result.render == null) {
+      if (typeof result.default === 'function') {
+        return new result(this) // eslint-disable-line
+      }
+
+      if (typeof result.load === 'function') {
+        return result.load(this)
+      }
+
+      if (typeof result.default === 'object' && result.default.render != null) {
+        return result.default
+      }
+    }
+
+    return result
   }
 
   render () {
