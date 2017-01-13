@@ -30,18 +30,30 @@ export default class Router {
   }
 
   async _normalizeRouteResponse (response) {
-    if (typeof response === 'object' && response.render == null) {
-      if (typeof response.default === 'function') {
-        return new response.default(this) // eslint-disable-line
-      }
+    const isAnObject =
+      typeof response === 'object'
+    const isAnObjectWithLoad =
+      isAnObject && typeof response.load === 'function'
+    const isAModuleWithDefault =
+      isAnObject && response.default != null
+    const isAModuleWithDefaultComponent =
+      isAModuleWithDefault && typeof response.default.render === 'function'
+    const isAModuleWithDefaultClass =
+      isAModuleWithDefault && typeof response.default === 'function'
+    const isAModuleWithDefaultClassWithLoad =
+      isAModuleWithDefaultClass && typeof response.default.load === 'function'
 
-      if (typeof response.load === 'function') {
-        return response.load(this)
-      }
-
-      if (typeof response.default === 'object' && response.default.render != null) {
-        return response.default
-      }
+    if (isAnObjectWithLoad) {
+      return response.load(this)
+    }
+    if (isAModuleWithDefaultComponent) {
+      return response.default
+    }
+    if (isAModuleWithDefaultClassWithLoad) {
+      return response.default.load(this)
+    }
+    if (isAModuleWithDefaultClass) {
+      return new response.default(this) // eslint-disable-line
     }
     return response
   }
