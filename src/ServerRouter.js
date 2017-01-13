@@ -30,6 +30,18 @@ export default class ServerRouter {
     return this._router.routes
   }
 
+  get currentPath () {
+    return this._router.currentPath
+  }
+
+  get isLoading () {
+    return this._router.isLoading
+  }
+
+  set isLoading (isLoading) {
+    this._router.isLoading = isLoading
+  }
+
   navigate (path) {
     return this._router.navigate(path)
   }
@@ -40,5 +52,9 @@ export default class ServerRouter {
 
   link (href, title, attributes = {}) {
     return this._router.link(href, title, attributes)
+  }
+
+  isActive (path) {
+    return this._router.isActive(path)
   }
 }

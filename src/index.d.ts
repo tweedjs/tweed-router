@@ -24,11 +24,14 @@ export type Routes = {
 
 export class Router {
   current: Renderable
+  isLoading: boolean
   readonly routes: Routes
+  readonly currentPath: string
 
   constructor (routes: Routes)
 
   navigate (path: string): PromiseLike<Renderable>
   render (): Node
   link (href: string, title: string, attributes?: Attributes): Node
+  isActive (path: string): boolean
 }

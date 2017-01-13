@@ -5,6 +5,8 @@ import PageNotFoundError from './errors/PageNotFoundError'
 
 export default class Router {
   @mutating current = null
+  @mutating isLoading = false
+  currentPath = '/'
 
   constructor (routes) {
     this.routes = routes
@@ -13,6 +15,8 @@ export default class Router {
   }
 
   async navigate (path) {
+    this.isLoading = true
+
     const route = Object.keys(this.routes)
       .filter((p) => p === path)[0]
 
@@ -25,6 +29,8 @@ export default class Router {
     const result = await this.routes[route](this)
 
     this.current = await this._normalizeRouteResponse(result)
+    this.currentPath = path
+    this.isLoading = false
 
     return this.current
   }
@@ -86,5 +92,9 @@ export default class Router {
         {...attributes}
       >{title}</a>
     )
+  }
+
+  isActive (path) {
+    return this.currentPath === path
   }
 }
