@@ -32,7 +32,7 @@ export default class Router {
   async _normalizeRouteResponse (response) {
     if (typeof response === 'object' && response.render == null) {
       if (typeof response.default === 'function') {
-        return new response(this) // eslint-disable-line
+        return new response.default(this) // eslint-disable-line
       }
 
       if (typeof response.load === 'function') {
