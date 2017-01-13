@@ -3,61 +3,49 @@
 import { Node } from 'tweed'
 import Router from './Router'
 
-export default class BrowserRouter {
-  constructor (router) {
-    this._router = router
+export HashHistory from './HashHistory'
+import BrowserHistory from './BrowserHistory'
+export { BrowserHistory }
 
-    this._onPopState = this._onPopState.bind(this)
+export default class BrowserRouter extends Router {
+  constructor (routes, history) {
+    super(routes)
+
+    this._history = history
+
+    this._onURLChange = this._onURLChange.bind(this)
     this._onClickLink = this._onClickLink.bind(this)
   }
 
-  static async make (routes) {
-    const replacingRoutes = {}
+  static async make (routes, history = new BrowserHistory()) {
+    const router = new BrowserRouter(routes, history)
 
-    for (const route in routes) {
-      if (routes.hasOwnProperty(route)) {
-        replacingRoutes[route] =
-          () => routes[route](router)
-      }
-    }
+    await router.navigate(history.path, false)
 
-    const router = new BrowserRouter(
-      new Router(replacingRoutes)
-    )
-
-    await router._router.navigate(window.location.pathname)
-
-    window.addEventListener('popstate', router._onPopState)
+    history.onURLChange(router._onURLChange)
 
     return router
   }
 
-  _onPopState () {
-    this._router.navigate(window.location.pathname)
+  _onURLChange () {
+    this.navigate(this._history.path, false)
   }
 
-  get current () {
-    return this._router.current
-  }
+  async navigate (path, push = true) {
+    const route = await super.navigate(path)
+    let title = document.title
 
-  set current (current) {
-    this._router.current = current
-  }
+    if (route.title != null) {
+      title = route.title
+    }
 
-  get routes () {
-    return this._router.routes
-  }
+    if (push) {
+      this._history.changeURL(path, title)
+    }
 
-  async navigate (path) {
-    const route = await this._router.navigate(path)
-
-    window.history.pushState(null, document.title, path)
+    document.title = title
 
     return route
-  }
-
-  render () {
-    return this._router.render()
   }
 
   _onClickLink (event) {
@@ -67,7 +55,7 @@ export default class BrowserRouter {
   }
 
   link (href, title, attributes = {}) {
-    const event = href in this._router.routes
+    const event = href in this.routes
       ? { 'on-click': this._onClickLink }
       : {}
 

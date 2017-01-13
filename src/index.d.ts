@@ -1,4 +1,4 @@
-import { Node, Attributes } from 'tweed'
+import { Node, Attributes, Renderable } from 'tweed'
 
 export class PageNotFoundError extends Error {
   readonly path: string
@@ -6,19 +6,29 @@ export class PageNotFoundError extends Error {
   constructor (path: string)
 }
 
-export type Route = { render: () => Node } | Node
+export interface Page {
+  title?: string
+  render (): Renderable
+}
+
+export type RouteResponse = Renderable
+  | Page
+  | { load (router: Router): Renderable | Page }
+  | { new (router: Router): Renderable | Page }
+  | { default: { load (router: Router): Renderable | Page } }
+  | { default: { new (router: Router): Renderable | Page } }
 
 export type Routes = {
-  [path: string]: (router: Router) => (Route | PromiseLike<Route>)
+  [path: string]: (router: Router) => (RouteResponse | PromiseLike<RouteResponse>)
 }
 
 export class Router {
-  current: Route | null
+  current: Renderable
   readonly routes: Routes
 
   constructor (routes: Routes)
 
-  navigate (path: string): PromiseLike<Route>
+  navigate (path: string): PromiseLike<Renderable>
   render (): Node
   link (href: string, title: string, attributes?: Attributes): Node
 }
