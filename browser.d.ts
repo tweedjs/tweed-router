@@ -1,6 +1,7 @@
 import { Router, Routes } from './dist'
 
 export interface History {
+  prefix?: string
   path: string
   onURLChange (listener: () => void): void
   changeURL (path: string): void

@@ -89,13 +89,23 @@ export default class Router {
   }
 
   link (href, title, attributes = {}) {
+    const event = this._hasRoute(href)
+      ? { 'on-click': this._onClickLink }
+      : {}
+
     return (
       <a
         href={href}
-        on-click={this._onClickLink}
+        {...event}
         {...attributes}
       >{title}</a>
     )
+  }
+
+  _hasRoute (path) {
+    return this.routes
+      .filter(([e]) => e.match(path).matches)
+      .length > 0
   }
 
   isActive (path) {
