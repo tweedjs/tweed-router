@@ -19,7 +19,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "tweed": "^0.3.0"
+    "tweed": "^0.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

@@ -3437,9 +3437,9 @@ tweed-babel-config@^0.2.0:
     babel-preset-es2016 "^6.16.0"
     babel-preset-es2017 "^6.16.0"
 
-tweed@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/tweed/-/tweed-0.3.0.tgz#e6a7e7bd5ede282bb00984e0ac158a215d2b9f64"
+tweed@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/tweed/-/tweed-0.3.2.tgz#95ff2e9f9ddd38068dd73bf0a5290f9980f348c2"
   dependencies:
     snabbdom "^0.5.4"
     snabbdom-jsx "^0.3.1"
