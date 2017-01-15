@@ -48,23 +48,11 @@ export default class BrowserRouter extends Router {
     return route
   }
 
-  _onClickLink (event) {
-    event.preventDefault()
+  link (href, title, attributes) {
+    if (this._history.prefix != null && this._hasRoute(href)) {
+      return super.link(this._history.prefix + href, title, attributes)
+    }
 
-    this.navigate(event.target.pathname)
-  }
-
-  link (href, title, attributes = {}) {
-    const event = href in this.routes
-      ? { 'on-click': this._onClickLink }
-      : {}
-
-    return (
-      <a
-        href={href}
-        {...event}
-        {...attributes}
-      >{title}</a>
-    )
+    return super.link(href, title, attributes)
   }
 }

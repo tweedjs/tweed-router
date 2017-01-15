@@ -1,4 +1,6 @@
 export default class HashHistory {
+  prefix = '#'
+
   onURLChange (listener) {
     window.addEventListener('hashchange', listener)
   }
