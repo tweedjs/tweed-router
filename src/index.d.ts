@@ -44,6 +44,7 @@ export class Router {
   readonly routes: [Endpoint, RouteHandler][]
   readonly currentPath: string
   readonly currentEndpoint: Endpoint
+  readonly currentMatch: Match
 
   constructor (routes: Routes)
 
