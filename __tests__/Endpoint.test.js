@@ -29,4 +29,11 @@ describe('Endpoint', () => {
     expect(match.matches).toBe(true)
     expect(match.params).toEqual({ param: 'hello' })
   })
+
+  test('multiple params', () => {
+    const endpoint = Endpoint.parse('/before/:param/:other/after')
+    const match = endpoint.match('/before/hello/other/after')
+    expect(match.matches).toBe(true)
+    expect(match.params).toEqual({ param: 'hello', other: 'other' })
+  })
 })

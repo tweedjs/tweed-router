@@ -13,7 +13,7 @@ export default class Endpoint {
         '^\\/?' +
         expression
           .replace(
-            /(?:^|\/):([^/]+)(?:$|\/)/,
+            /(?:^|\/):([^/]+)(?=$|\/)/g,
             (m, name) => {
               params.push(name)
               return '/([^/]+)/'
