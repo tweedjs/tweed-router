@@ -29,6 +29,7 @@ export default class Router {
         const result = await handler(this, match.params)
         this.current = await this._normalizeRouteResponse(result)
         this.currentEndpoint = endpoint
+        this.currentMatch = match
         this.currentPath = '/' + path.split('/').filter((s) => s).join('/')
         this.isLoading = false
         return this.current
@@ -54,16 +55,16 @@ export default class Router {
       isAModuleWithDefaultClass && typeof response.default.load === 'function'
 
     if (isAnObjectWithLoad) {
-      return response.load(this)
+      return response.load(this, this.currentMatch.params)
     }
     if (isAModuleWithDefaultComponent) {
       return response.default
     }
     if (isAModuleWithDefaultClassWithLoad) {
-      return response.default.load(this)
+      return response.default.load(this, this.currentMatch.params)
     }
     if (isAModuleWithDefaultClass) {
-      return new response.default(this) // eslint-disable-line
+      return new response.default(this, this.currentMatch.params) // eslint-disable-line
     }
     return response
   }
