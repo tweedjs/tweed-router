@@ -30,6 +30,9 @@ export default class BrowserRouter extends Router {
 
   async navigate (path, push = true) {
     const route = await super.navigate(path)
+
+    window.scrollTo(0, 0)
+
     let title = document.title
 
     if (route.title != null) {
