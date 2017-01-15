@@ -27,10 +27,10 @@ export default class Router {
 
       if (match.matches) {
         const result = await handler(this, match.params)
-        this.current = await this._normalizeRouteResponse(result)
         this.currentEndpoint = endpoint
         this.currentMatch = match
         this.currentPath = '/' + path.split('/').filter((s) => s).join('/')
+        this.current = await this._normalizeRouteResponse(result)
         this.isLoading = false
         return this.current
       }
