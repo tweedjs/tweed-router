@@ -1,6 +1,3 @@
-/** @jsx Node */
-
-import { Node } from 'tweed'
 import Router from './Router'
 
 export HashHistory from './HashHistory'
