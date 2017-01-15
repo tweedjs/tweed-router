@@ -1,6 +1,6 @@
 {
   "name": "tweed-router",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Universal Router for Tweed",
   "homepage": "https://github.com/tweedjs/tweed-router",
   "license": "WTFPL",
