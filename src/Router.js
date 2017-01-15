@@ -2,6 +2,7 @@
 
 import { mutating, Node } from 'tweed'
 import PageNotFoundError from './errors/PageNotFoundError'
+import Endpoint from './Endpoint'
 
 export default class Router {
   @mutating current = null
@@ -9,7 +10,10 @@ export default class Router {
   currentPath = '/'
 
   constructor (routes) {
-    this.routes = routes
+    this.routes = Object.keys(routes)
+      .map((s) =>
+        [Endpoint.parse(s), routes[s]]
+      )
 
     this._onClickLink = this._onClickLink.bind(this)
   }
@@ -17,22 +21,22 @@ export default class Router {
   async navigate (path) {
     this.isLoading = true
 
-    const route = Object.keys(this.routes)
-      .filter((p) => p === path)[0]
+    for (let i = 0; i < this.routes.length; i++) {
+      const [endpoint, handler] = this.routes[i]
+      const match = endpoint.match(path)
 
-    if (route == null) {
-      this.current = null
-
-      throw new PageNotFoundError(path)
+      if (match.matches) {
+        const result = await handler(this, match.params)
+        this.current = await this._normalizeRouteResponse(result)
+        this.currentEndpoint = endpoint
+        this.currentPath = '/' + path.split('/').filter((s) => s).join('/')
+        this.isLoading = false
+        return this.current
+      }
     }
-
-    const result = await this.routes[route](this)
-
-    this.current = await this._normalizeRouteResponse(result)
-    this.currentPath = path
     this.isLoading = false
 
-    return this.current
+    throw new PageNotFoundError(path)
   }
 
   async _normalizeRouteResponse (response) {
@@ -95,6 +99,6 @@ export default class Router {
   }
 
   isActive (path) {
-    return this.currentPath === path
+    return this.currentPath === '/' + path.split('/').filter((s) => s).join('/')
   }
 }

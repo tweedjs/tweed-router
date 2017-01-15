@@ -14,7 +14,8 @@ describe('Router', () => {
 
   beforeEach(() => {
     router = new Router({
-      '/': () => <div>Home</div>
+      '/': () => <div>Home</div>,
+      '/:param': (r, { param }) => <div>{param}</div>
     })
   })
 
@@ -36,11 +37,17 @@ describe('Router', () => {
 
   test('throws a PageNotFoundError if no route matches the path', async () => {
     try {
-      await router.navigate('/not-found')
+      await router.navigate('/not/found')
 
       throw new Error('Never threw')
     } catch (error) {
       expect(error).toBeInstanceOf(PageNotFoundError)
     }
+  })
+
+  test('param', async () => {
+    const route = await router.navigate('/hello')
+
+    expect(route).toEqual(<div>hello</div>)
   })
 })

@@ -18,15 +18,32 @@ export type RouteResponse = Renderable
   | { default: { load (router: Router): Renderable | Page } }
   | { default: { new (router: Router): Renderable | Page } }
 
+export type RouteHandler =
+  (router: Router, params: Params) => (RouteResponse | PromiseLike<RouteResponse>)
+
 export type Routes = {
-  [path: string]: (router: Router) => (RouteResponse | PromiseLike<RouteResponse>)
+  [path: string]: RouteHandler
+}
+
+export type Params = {
+  [param: string]: string
+}
+
+export interface Match {
+  matches: boolean
+  params: Params
+}
+
+export interface Endpoint {
+  match (path: string): Match
 }
 
 export class Router {
   current: Renderable
   isLoading: boolean
-  readonly routes: Routes
+  readonly routes: [Endpoint, RouteHandler][]
   readonly currentPath: string
+  readonly currentEndpoint: Endpoint
 
   constructor (routes: Routes)
 
