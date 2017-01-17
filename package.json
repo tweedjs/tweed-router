@@ -18,7 +18,7 @@
   "author": "Emil Persson <emil.n.persson@gmail.com> (https://emilpersson.se)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "dependencies": {
+  "peerDependencies": {
     "tweed": "^0.3.2"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
     "babel-jest": "^18.0.0",
     "jest": "^18.1.0",
     "standard": "^8.6.0",
+    "tweed": "^0.3.2",
     "tweed-babel-config": "^0.2.0",
     "webpack": "^1.14.0"
   },
