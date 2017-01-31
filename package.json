@@ -1,6 +1,6 @@
 {
   "name": "tweed-router",
-  "version": "0.3.11",
+  "version": "0.4.0",
   "description": "Universal Router for Tweed",
   "homepage": "https://github.com/tweedjs/tweed-router",
   "license": "WTFPL",
@@ -18,16 +18,21 @@
   "author": "Emil Persson <emil.n.persson@gmail.com> (https://emilpersson.se)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "tweed": "^0.3.2"
+  "peerDependencies": {
+    "babel-polyfill": "*",
+    "babel-runtime": "*",
+    "tweed": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
+    "babel-polyfill": "^6.22.0",
+    "babel-runtime": "^6.22.0",
     "jest": "^18.1.0",
     "standard": "^8.6.0",
-    "tweed-babel-config": "^0.2.0",
+    "tweed": "^0.4.0",
+    "tweed-babel-config": "^0.4.0",
     "webpack": "^1.14.0"
   },
   "standard": {
