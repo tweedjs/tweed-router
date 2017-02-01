@@ -21,9 +21,10 @@ export type RouteResponse = Renderable
 export type RouteHandler =
   (router: Router, params: Params) => (RouteResponse | PromiseLike<RouteResponse>)
 
-export type Routes = {
+export interface Routes {
   [path: string]: RouteHandler
 }
+export abstract class Routes implements Routes {}
 
 export type Params = {
   [param: string]: string

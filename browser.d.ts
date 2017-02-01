@@ -1,6 +1,6 @@
 import { Router, Routes } from './dist'
 
-export interface History {
+export abstract class History {
   prefix?: string
   path: string
   onURLChange (listener: () => void): void
@@ -15,10 +15,13 @@ export const HashHistory: {
   new (): History
 }
 
-interface BrowserRouter extends Router {}
+declare class BrowserRouter extends Router {
+  constructor(routes: Routes, history?: History)
+  boot(): PromiseLike<void>
+}
 
 declare namespace BrowserRouter {
-  function make (routes: Routes, history?: History): PromiseLike<BrowserRouter>
+  function make (routes: Routes, history?: History): PromiseLike<Router>
 }
 
 export default BrowserRouter

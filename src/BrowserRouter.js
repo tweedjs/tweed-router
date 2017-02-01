@@ -1,27 +1,38 @@
-import Router from './Router'
+import Router, { Routes } from './Router'
+import { inject } from './tweed-inject'
 
 export HashHistory from './HashHistory'
 import BrowserHistory from './BrowserHistory'
 export { BrowserHistory }
 
+/**
+ * Abstract marker class to enable DI
+ */
+export class History {}
+
+@inject(Routes, History)
 export default class BrowserRouter extends Router {
   constructor (routes, history) {
     super(routes)
 
-    this._history = history
+    this._history = history || new BrowserHistory()
 
     this._onURLChange = this._onURLChange.bind(this)
     this._onClickLink = this._onClickLink.bind(this)
   }
 
-  static async make (routes, history = new BrowserHistory()) {
+  static async make (routes, history) {
     const router = new BrowserRouter(routes, history)
 
-    await router.navigate(history.path, false)
-
-    history.onURLChange(router._onURLChange)
+    await router.boot()
 
     return router
+  }
+
+  async boot () {
+    await this.navigate(this._history.path, false)
+
+    this._history.onURLChange(this._onURLChange)
   }
 
   _onURLChange () {
