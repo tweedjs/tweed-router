@@ -1,2 +1,2 @@
-export Router from './Router'
+export Router, { Routes } from './Router'
 export PageNotFoundError from './errors/PageNotFoundError'

@@ -23,6 +23,9 @@
     "babel-runtime": "*",
     "tweed": "^0.4.0"
   },
+  "optionalDependencies": {
+    "tweed-inject": "^0.4.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",

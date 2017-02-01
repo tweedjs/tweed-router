@@ -3,7 +3,14 @@
 import { mutating, Node } from 'tweed'
 import PageNotFoundError from './errors/PageNotFoundError'
 import Endpoint from './Endpoint'
+import { inject } from './tweed-inject'
 
+/**
+ * Abstract placeholder class to enable DI
+ */
+export class Routes {}
+
+@inject(Routes)
 export default class Router {
   @mutating current = null
   @mutating isLoading = false
