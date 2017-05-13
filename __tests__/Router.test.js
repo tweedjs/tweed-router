@@ -1,6 +1,6 @@
-/** @jsx Node */
+/** @jsx VirtualNode */
 
-import { Engine, Node } from 'tweed'
+import { Engine, VirtualNode } from 'tweed'
 import { StringRenderer } from 'tweed/render/string'
 import { Router, PageNotFoundError } from '../src'
 
@@ -21,8 +21,7 @@ describe('Router', () => {
 
   test('can build links', () => {
     const link = router.link('/', 'Link')
-    delete link.data.on
-    expect(link).toEqual(<a href='/'>Link</a>)
+    expect(link).toEqual(<a href='/' on-click={link.attributes['on-click']}>Link</a>)
   })
 
   test('loads a route', async () => {

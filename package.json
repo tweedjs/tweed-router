@@ -1,6 +1,6 @@
 {
   "name": "tweed-router",
-  "version": "0.3.11",
+  "version": "0.5.0",
   "description": "Universal Router for Tweed",
   "homepage": "https://github.com/tweedjs/tweed-router",
   "license": "WTFPL",
@@ -19,7 +19,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "tweed": "^0.3.2"
+    "tweed": "^0.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -27,8 +27,8 @@
     "babel-jest": "^18.0.0",
     "jest": "^18.1.0",
     "standard": "^8.6.0",
-    "tweed-babel-config": "^0.2.0",
-    "webpack": "^1.14.0"
+    "tweed-babel-config": "^0.5.0",
+    "webpack": "^2.5.1"
   },
   "standard": {
     "globals": [

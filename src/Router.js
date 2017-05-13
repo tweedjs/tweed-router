@@ -1,6 +1,6 @@
-/** @jsx Node */
+/** @jsx VirtualNode */
 
-import { mutating, Node } from 'tweed'
+import { mutating, VirtualNode } from 'tweed'
 import PageNotFoundError from './errors/PageNotFoundError'
 import Endpoint from './Endpoint'
 

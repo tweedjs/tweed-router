@@ -1,6 +1,4 @@
-import { optimize } from 'webpack'
-
-export default {
+module.exports = {
   entry: './dist/webpack',
   output: {
     path: __dirname,
@@ -8,8 +6,5 @@ export default {
     library: 'TweedRouter',
     libraryTarget: 'umd'
   },
-  devtool: 'source-map',
-  plugins: [
-    new optimize.UglifyJsPlugin()
-  ]
+  devtool: 'source-map'
 }
