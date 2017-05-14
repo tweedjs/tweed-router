@@ -17,11 +17,15 @@ export default class BrowserRouter extends Router {
   static async make (routes, history = new BrowserHistory()) {
     const router = new BrowserRouter(routes, history)
 
-    await router.navigate(history.path, false)
-
-    history.onURLChange(router._onURLChange)
+    await router.boot()
 
     return router
+  }
+
+  async boot () {
+    await this.navigate(this._history.path, false)
+
+    this._history.onURLChange(this._onURLChange)
   }
 
   _onURLChange () {
