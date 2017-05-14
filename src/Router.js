@@ -14,8 +14,6 @@ export default class Router {
       .map((s) =>
         [Endpoint.parse(s), routes[s]]
       )
-
-    this._onClickLink = this._onClickLink.bind(this)
   }
 
   async navigate (path) {
@@ -83,15 +81,15 @@ export default class Router {
     return this.current
   }
 
-  _onClickLink (event) {
+  _onClickLink (href, event) {
     event.preventDefault()
 
-    this.navigate(event.target.pathname)
+    this.navigate(href)
   }
 
   link (href, title, attributes = {}) {
     const event = this._hasRoute(href)
-      ? { 'on-click': this._onClickLink }
+      ? { 'on-click': this._onClickLink.bind(this, href) }
       : {}
 
     return (

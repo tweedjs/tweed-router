@@ -11,7 +11,6 @@ export default class BrowserRouter extends Router {
     this._history = history
 
     this._onURLChange = this._onURLChange.bind(this)
-    this._onClickLink = this._onClickLink.bind(this)
   }
 
   static async make (routes, history = new BrowserHistory()) {
