@@ -23,7 +23,7 @@ Render the router with Tweed's `render` method to render the current page of the
 automatically:
 
 ```javascript
-import { Node } from 'tweed'
+import { VirtualNode } from 'tweed'
 import render from 'tweed/render/dom'
 
 class HomePage {

@@ -23,4 +23,4 @@ babel:
 
 .PHONY: webpack
 webpack:
-	webpack
+	webpack -p

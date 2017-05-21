@@ -1,4 +1,4 @@
-import { Node, Attributes, Renderable } from 'tweed'
+import { VirtualNode, Attributes, Renderable } from 'tweed'
 
 export class PageNotFoundError extends Error {
   readonly path: string
@@ -50,7 +50,7 @@ export class Router {
   constructor (routes: Routes)
 
   navigate (path: string): PromiseLike<Renderable>
-  render (): Node
-  link (href: string, title: string, attributes?: Attributes): Node
+  render (): VirtualNode
+  link (href: string, title: string, attributes?: Attributes): VirtualNode
   isActive (path: string): boolean
 }
