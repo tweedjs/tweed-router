@@ -1,8 +1,7 @@
 import Router from './Router'
-
-export HashHistory from './HashHistory'
 import BrowserHistory from './BrowserHistory'
 export { BrowserHistory }
+export { default as HashHistory } from './HashHistory'
 
 export default class BrowserRouter extends Router {
   constructor (routes, history) {
