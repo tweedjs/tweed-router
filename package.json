@@ -19,16 +19,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "tweed": "^0.5.0"
+    "tweed": "^0.5.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^7.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.5",
     "babel-jest": "^18.0.0",
     "jest": "^18.1.0",
-    "standard": "^8.6.0",
-    "tweed-babel-config": "^0.5.0",
-    "webpack": "^2.5.1"
+    "standard": "^11.0.1",
+    "tweed-babel-config": "^0.5.2",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8"
   },
   "standard": {
     "globals": [
